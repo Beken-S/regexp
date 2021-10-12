@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задание 1-2</title>
+  </head>
+  <p>
+    'Lorem sdfsdf.' ipsum dolor, sit amet 'consectetur aren't adipisicing elit.
+    aren't.'
+  </p>
+  <button>Заменить</button>
+  <body>
+    <script>
+      const p = document.querySelector("p");
+      const button = document.querySelector("button");
+
+      //Регулярное выражение
+      const regexp = /'\B|\B'/g;
+
+      function replace(string) {
+        return string.replace(regexp, '"');
+      }
+      button.addEventListener("click", () => {
+        p.textContent = replace(p.textContent);
+      });
+    </script>
+  </body>
+</html>
