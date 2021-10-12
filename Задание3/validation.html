@@ -73,6 +73,7 @@
         } else {
           name.style.borderColor = "red";
           name.insertAdjacentElement("afterend", errorName);
+          event.preventDefault();
         }
 
         if (regexpTelephone.test(telephone.value)) {
@@ -81,6 +82,7 @@
         } else {
           telephone.style.borderColor = "red";
           telephone.insertAdjacentElement("afterend", errorTelephone);
+          event.preventDefault();
         }
 
         if (regexpEmail.test(email.value)) {
@@ -89,9 +91,8 @@
         } else {
           email.style.borderColor = "red";
           email.insertAdjacentElement("afterend", errorEmail);
+          event.preventDefault();
         }
-
-        event.preventDefault();
       });
     </script>
   </body>
