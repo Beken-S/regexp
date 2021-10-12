@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-size: 18px;
+      }
+      form {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+      }
+      input {
+        margin-bottom: 20px;
+        padding: 5px 10px;
+        font-size: 18px;
+        border-style: solid;
+      }
+      label {
+        margin-bottom: 10px;
+      }
+      textarea {
+        margin-bottom: 20px;
+      }
+      button {
+        font-size: 18px;
+        padding: 5px 10px;
+      }
+      div {
+        margin-bottom: 20px;
+        text-align: center;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <label for="name">Имя:</label>
+      <input id="name" type="text" placeholder="Имя" />
+      <label for="telephone">Телефон:</label>
+      <input id="telephone" type="text" placeholder="+7(000)000-0000" />
+      <label for="email">Email:</label>
+      <input id="email" type="text" placeholder="mymail@mail.ru" />
+      <textarea name="text" id="text" cols="30" rows="10"></textarea>
+      <button>Отправить</button>
+    </form>
+
+    <script>
+      "use strict";
+      const formEl = document.querySelector("form");
+      const name = document.getElementById("name");
+      const telephone = document.getElementById("telephone");
+      const email = document.getElementById("email");
+      const errorName = document.createElement("div");
+      errorName.textContent = "Ошибка!";
+      const errorTelephone = document.createElement("div");
+      errorTelephone.textContent = "Ошибка!";
+      const errorEmail = document.createElement("div");
+      errorEmail.textContent = "Ошибка!";
+
+      formEl.addEventListener("submit", (event) => {
+        const regexpName = /^[a-zа-яё]+$/giu;
+        const regexpTelephone = /^\+7\(\d{3}\)\d{3}-\d{4}$/g;
+        const regexpEmail =
+          /^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/g;
+
+        if (regexpName.test(name.value)) {
+          name.removeAttribute("style");
+          errorName.remove();
+        } else {
+          name.style.borderColor = "red";
+          name.insertAdjacentElement("afterend", errorName);
+        }
+
+        if (regexpTelephone.test(telephone.value)) {
+          telephone.removeAttribute("style");
+          errorTelephone.remove();
+        } else {
+          telephone.style.borderColor = "red";
+          telephone.insertAdjacentElement("afterend", errorTelephone);
+        }
+
+        if (regexpEmail.test(email.value)) {
+          email.removeAttribute("style");
+          errorEmail.remove();
+        } else {
+          email.style.borderColor = "red";
+          email.insertAdjacentElement("afterend", errorEmail);
+        }
+
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>
